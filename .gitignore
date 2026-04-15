@@ -1,0 +1,62 @@
+# Large data files
+dataset/
+kyrgyz_corpus.txt
+
+# Model checkpoints
+checkpoints_new/
+checkpoints_old/
+kyrgyz-mt5-tokenizer/
+kyrgyz_sp.model
+kyrgyz_sp.vocab
+mlruns/
+
+# Eval predictions (large jsonl files)
+eval_results/
+
+# Human eval annotated data (keep only structure)
+human_eval/eval_200.csv
+
+# HuggingFace dataset subset
+hf_dataset/
+
+# Internal/debug scripts
+check_hf_token.py
+upload_to_hf.py
+prepare_hf_dataset.py
+check_new_tokenizer.py
+check_tokenization.py
+build_kyrgyz_tokenizer.py
+create_annotation_file.py
+preannotate_with_claude.py
+preannotate_with_llm.py
+
+# Annotation pipeline data
+annotation_todo.csv
+preannotate_log.txt
+bektemir/
+benchmark/
+
+# Lock files and temp
+.~lock.*
+*.~lock*
+transcriptions.csv
+paper/paper.md
+test_inference.py
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.env
+venv/
+
+# LaTeX build artifacts
+paper/latex/*.aux
+paper/latex/*.log
+paper/latex/*.bbl
+paper/latex/*.blg
+paper/latex/*.out
+paper/latex/*.toc
+paper/latex/*.synctex.gz
+paper/latex/main.pdf
