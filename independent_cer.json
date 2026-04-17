@@ -1,0 +1,30 @@
+{
+  "n_examples": 50,
+  "index_range": [
+    100,
+    149
+  ],
+  "per_system": {
+    "Rule-Based": {
+      "cer_vs_gemini_target": 0.21291037734491394,
+      "cer_vs_independent": 0.12168968989248334
+    },
+    "Gemma 4": {
+      "cer_vs_gemini_target": 0.16934065919641383,
+      "cer_vs_independent": 0.10230715315184544
+    },
+    "FT": {
+      "cer_vs_gemini_target": 0.09133609230427478,
+      "cer_vs_independent": 0.07931917345372558
+    },
+    "Pre-Train+FT": {
+      "cer_vs_gemini_target": 0.08356488989223998,
+      "cer_vs_independent": 0.08061910637169623
+    },
+    "Zero-Shot": {
+      "cer_vs_gemini_target": 0.9857813998331173,
+      "cer_vs_independent": 0.9864648877402756
+    }
+  },
+  "reference_agreement_cer": 0.12003345896225151
+}

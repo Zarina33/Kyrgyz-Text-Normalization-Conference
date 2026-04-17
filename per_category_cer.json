@@ -1,0 +1,54 @@
+{
+  "categories": [
+    "Punctuation",
+    "Capitalization",
+    "All-Caps",
+    "Digit-Word",
+    "No Change"
+  ],
+  "systems": [
+    "Rule-Based",
+    "Gemma 4",
+    "FT",
+    "Pre-Train+FT"
+  ],
+  "counts": {
+    "Punctuation": 849,
+    "Capitalization": 62,
+    "All-Caps": 39,
+    "Digit-Word": 41,
+    "No Change": 2
+  },
+  "cer": {
+    "Punctuation": {
+      "Rule-Based": 0.19925922879985475,
+      "Gemma 4": 0.16190181614022212,
+      "FT": 0.07832349084577529,
+      "Pre-Train+FT": 0.08052499776288054
+    },
+    "Capitalization": {
+      "Rule-Based": 0.16668089947780637,
+      "Gemma 4": 0.13952210162396025,
+      "FT": 0.08375849620074631,
+      "Pre-Train+FT": 0.08504662265446514
+    },
+    "All-Caps": {
+      "Rule-Based": 0.8523379012233442,
+      "Gemma 4": 0.16770002320710323,
+      "FT": 0.08373979550624958,
+      "Pre-Train+FT": 0.08316309116833367
+    },
+    "Digit-Word": {
+      "Rule-Based": 0.21756683424629383,
+      "Gemma 4": 0.19852577970586313,
+      "FT": 0.07574693509887802,
+      "Pre-Train+FT": 0.06717174229790587
+    },
+    "No Change": {
+      "Rule-Based": 0.0,
+      "Gemma 4": 0.0,
+      "FT": 0.011494252873563218,
+      "Pre-Train+FT": 0.011494252873563218
+    }
+  }
+}

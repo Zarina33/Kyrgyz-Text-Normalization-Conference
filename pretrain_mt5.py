@@ -10,8 +10,8 @@ from pathlib import Path
 
 # ===================== CONFIG =====================
 MODEL_NAME      = "google/mt5-small"
-CORPUS_PATH     = "/home/zarina/Work/RESEARCH/kyrgyz_corpus.txt"
-OUTPUT_DIR      = "/home/zarina/Work/RESEARCH/checkpoints_new/mt5-kyrgyz-pretrained"
+CORPUS_PATH     = "./kyrgyz_corpus.txt"
+OUTPUT_DIR      = "./checkpoints_new/mt5-kyrgyz-pretrained"
 MAX_LEN         = 256
 BATCH_SIZE      = 4
 GRAD_ACCUM      = 16         # effective batch = 64
@@ -142,7 +142,7 @@ def find_latest_checkpoint(output_dir):
 
 
 def main():
-    mlflow.set_tracking_uri("file:///home/zarina/Work/RESEARCH/mlruns")
+    mlflow.set_tracking_uri("file:./mlruns")
     mlflow.set_experiment(EXPERIMENT_NAME)
 
     latest_ckpt = find_latest_checkpoint(OUTPUT_DIR)

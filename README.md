@@ -10,7 +10,7 @@ Code and resources for training, evaluating, and analyzing five text normalizati
 | mT5 Pre-Train+FT | Continual pre-training on Kyrgyz corpus, then fine-tuning |
 | Gemma 4 Zero-Shot | Gemma 4 (9.6B, 4-bit) via Ollama |
 
-**Key result:** Fine-tuned mT5-small (300M params) achieves CER 0.0796, outperforming Gemma 4 (CER 0.1620) — a model 30x larger.
+**Key result:** Fine-tuned mT5-small (300M params) achieves CER 0.0796, outperforming zero-shot Gemma 4 (CER 0.1620) — a model roughly 32x larger. This is a fine-tuned vs. zero-shot comparison, not a direct capacity comparison.
 
 ## Requirements
 
@@ -28,22 +28,43 @@ ollama pull gemma4:e4b
 ## Project Structure
 
 ```
-├── train_mt5.py          # Fine-tune mT5-small on normalization dataset
-├── pretrain_mt5.py       # Continual pre-training with span corruption
-├── rule_based.py         # Rule-based baseline
-├── inference.py          # Interactive inference with fine-tuned model
-├── evaluate.py           # Automatic evaluation (CER / WER / Exact Match)
-├── evaluate_llm.py       # Gemma 4 zero-shot evaluation via Ollama
-├── significance_test.py  # Bootstrap significance tests (n=10,000)
-├── error_analysis.py     # Error analysis: FT vs Pre-Train+FT
-├── dataset_analysis.py   # Dataset statistics and normalization type analysis
-├── plot_normalization.py # Figure: distribution of normalization types
-├── prepare_datasets.py   # Prepare train/test splits from raw data
-├── prepare_human_eval.py # Generate CSV for human evaluation
+├── train_mt5.py            # Fine-tune mT5-small on normalization dataset
+├── pretrain_mt5.py         # Continual pre-training with span corruption
+├── rule_based.py           # Rule-based baseline
+├── inference.py            # Interactive inference with fine-tuned model
+├── evaluate.py             # Automatic evaluation (CER / WER / Exact Match)
+├── evaluate_llm.py         # Gemma 4 zero-shot evaluation via Ollama
+├── significance_test.py    # Bootstrap significance tests (n=10,000)
+├── error_analysis.py       # Error analysis: FT vs Pre-Train+FT
+├── dataset_analysis.py     # Dataset statistics and normalization type analysis
+├── plot_normalization.py   # Figure: distribution of normalization types
+├── prepare_datasets.py     # Prepare train/test splits from raw data
+├── prepare_human_eval.py   # Generate CSV for human evaluation
+├── independent_reference.py# Build independent human reference set (reference-bias probe, §5.4)
+├── independent_cer.py      # CER against independent human references (§5.4)
+├── independent_cer.json    # Cached results of the independent-reference evaluation
+├── per_category_cer.py     # Per-category CER breakdown (punctuation / case / spelling / digit-word)
+├── per_category_cer.json   # Cached per-category CER results
 ├── requirements.txt
 └── human_eval/
     └── eval_200_annotated.csv
 ```
+
+## Expected Directory Layout
+
+The scripts use relative paths and expect the following layout at runtime (create these directories and drop in your data / checkpoints):
+
+```
+./dataset/                    # train/test jsonl files
+./data/raw/                   # raw pre-annotation data (if reproducing from scratch)
+./checkpoints_new/            # model checkpoints
+./eval_results/               # per-system prediction jsonl files
+./human_eval/                 # annotator CSVs
+./mlruns/                     # MLflow tracking (auto-created)
+./kyrgyz_corpus.txt           # clean Kyrgyz corpus for continual pre-training
+```
+
+All paths are configurable at the top of each script if your layout differs.
 
 ## Training
 
@@ -109,6 +130,13 @@ python dataset_analysis.py
 
 # Reproduce the normalization type figure
 python plot_normalization.py
+
+# Per-category CER (punctuation / case / spelling / digit-word)
+python per_category_cer.py
+
+# Reference-bias probe (§5.4): CER against 50 independent human references
+python independent_reference.py   # build the independent reference set
+python independent_cer.py         # compute CER against it
 ```
 
 ## Results

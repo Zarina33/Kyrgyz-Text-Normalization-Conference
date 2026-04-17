@@ -14,9 +14,9 @@ from pathlib import Path
 
 random.seed(42)
 
-LAST_JSONL     = Path("/home/zarina/Work/RESEARCH/bektemir/mt5_datasetLAST.jsonl")
-ASR_JSONL      = Path("/home/zarina/Work/RESEARCH/bektemir/asr_conversational_dataset.jsonl")
-OUT_DIR        = Path("/home/zarina/Work/RESEARCH/dataset")
+LAST_JSONL     = Path("./data/raw/mt5_datasetLAST.jsonl")
+ASR_JSONL      = Path("./data/raw/asr_conversational_dataset.jsonl")
+OUT_DIR        = Path("./dataset")
 TEST_SIZE      = 1000
 
 

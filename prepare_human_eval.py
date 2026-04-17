@@ -7,8 +7,8 @@ import json
 import csv
 import random
 
-EVAL_DIR  = "/home/zarina/Work/RESEARCH/eval_results"
-OUTPUT    = "/home/zarina/Work/RESEARCH/human_eval/human_eval_200.csv"
+EVAL_DIR  = "./eval_results"
+OUTPUT    = "./human_eval/human_eval_200.csv"
 N         = 200
 SEED      = 42
 
@@ -22,7 +22,7 @@ def load_jsonl(path):
 
 def main():
     import os
-    os.makedirs("/home/zarina/Work/RESEARCH/human_eval", exist_ok=True)
+    os.makedirs("./human_eval", exist_ok=True)
 
     rb  = load_jsonl(f"{EVAL_DIR}/rulebased_formal.jsonl")
     zs  = load_jsonl(f"{EVAL_DIR}/zeroshot_formal.jsonl")

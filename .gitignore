@@ -33,7 +33,7 @@ preannotate_with_llm.py
 # Annotation pipeline data
 annotation_todo.csv
 preannotate_log.txt
-bektemir/
+data/raw/
 benchmark/
 
 # Lock files and temp

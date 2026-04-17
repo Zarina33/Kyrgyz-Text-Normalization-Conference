@@ -13,9 +13,9 @@ from torch.utils.tensorboard import SummaryWriter
 from pathlib import Path
 
 # ===================== CONFIG =====================
-MODEL_NAME = "/home/zarina/Work/RESEARCH/checkpoints_new/mt5-kyrgyz-pretrained/final"
-DATA_PATH = "/home/zarina/Work/RESEARCH/dataset/mixed_train.jsonl"
-OUTPUT_DIR = "/home/zarina/Work/RESEARCH/checkpoints_new/mt5-kyrgyz-pretrained-finetuned"
+MODEL_NAME = "./checkpoints_new/mt5-kyrgyz-pretrained/final"
+DATA_PATH = "./dataset/mixed_train.jsonl"
+OUTPUT_DIR = "./checkpoints_new/mt5-kyrgyz-pretrained-finetuned"
 MAX_INPUT_LEN = 256
 MAX_TARGET_LEN = 256
 BATCH_SIZE = 4
@@ -88,7 +88,7 @@ def find_latest_checkpoint(output_dir):
 
 def main():
     # MLflow setup
-    mlflow.set_tracking_uri(f"file:///home/zarina/Work/RESEARCH/mlruns")
+    mlflow.set_tracking_uri(f"file:./mlruns")
     mlflow.set_experiment(EXPERIMENT_NAME)
 
     # Check for resume

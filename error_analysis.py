@@ -8,8 +8,8 @@ from pathlib import Path
 from evaluate import compute_cer
 from jiwer import wer as compute_wer
 
-FINETUNED_PREDS    = "/home/zarina/Work/RESEARCH/eval_results/finetuned_formal.jsonl"
-PRETRAINED_PREDS   = "/home/zarina/Work/RESEARCH/eval_results/pretrained_ft_formal.jsonl"
+FINETUNED_PREDS    = "./eval_results/finetuned_formal.jsonl"
+PRETRAINED_PREDS   = "./eval_results/pretrained_ft_formal.jsonl"
 
 
 def load_preds(path):

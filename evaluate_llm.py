@@ -7,8 +7,8 @@ import requests
 from pathlib import Path
 from evaluate import load_formal_test, compute_metrics, save_predictions
 
-TEST_FORMAL = "/home/zarina/Work/RESEARCH/dataset/test_set_formal.jsonl"
-OUTPUT_DIR  = Path("/home/zarina/Work/RESEARCH/eval_results")
+TEST_FORMAL = "./dataset/test_set_formal.jsonl"
+OUTPUT_DIR  = Path("./eval_results")
 OLLAMA_URL  = "http://localhost:11434/api/generate"
 MODEL_NAME  = "gemma4:e4b"
 

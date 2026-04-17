@@ -41,8 +41,8 @@ ax.tick_params(axis='y', labelsize=8.5)
 ax.tick_params(axis='x', labelsize=8)
 
 plt.tight_layout()
-plt.savefig('/home/zarina/Work/RESEARCH/paper/latex/normalization_types.pdf',
+plt.savefig('./paper/latex/normalization_types.pdf',
             bbox_inches='tight', dpi=300)
-plt.savefig('/home/zarina/Work/RESEARCH/paper/latex/normalization_types.png',
+plt.savefig('./paper/latex/normalization_types.png',
             bbox_inches='tight', dpi=300)
 print("Saved normalization_types.pdf and .png")

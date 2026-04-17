@@ -18,7 +18,7 @@ def compute_cer(ref, hyp):
             d[i][j] = min(d[i-1][j]+1, d[i][j-1]+1, d[i-1][j-1]+cost)
     return d[len(r)][len(h)] / len(r)
 
-EVAL_DIR = "/home/zarina/Work/RESEARCH/eval_results"
+EVAL_DIR = "./eval_results"
 N_BOOTSTRAP = 10000
 SEED = 42
 

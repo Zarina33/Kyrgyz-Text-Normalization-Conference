@@ -13,12 +13,12 @@ from jiwer import wer as compute_wer
 from rule_based import correct as rule_based_correct
 
 # ===================== CONFIG =====================
-FINETUNED_MODEL    = "/home/zarina/Work/RESEARCH/checkpoints_new/mt5-kyrgyz-mixed/final"
-PRETRAINED_FT_MODEL = "/home/zarina/Work/RESEARCH/checkpoints_new/mt5-kyrgyz-pretrained-finetuned/final"
+FINETUNED_MODEL    = "./checkpoints_new/mt5-kyrgyz-mixed/final"
+PRETRAINED_FT_MODEL = "./checkpoints_new/mt5-kyrgyz-pretrained-finetuned/final"
 ZEROSHOT_MODEL     = "google/mt5-small"
 
-TEST_FORMAL   = "/home/zarina/Work/RESEARCH/dataset/test_set_formal.jsonl"
-TEST_ASR      = "/home/zarina/Work/RESEARCH/annotation_todo.csv"
+TEST_FORMAL   = "./dataset/test_set_formal.jsonl"
+TEST_ASR      = "./annotation_todo.csv"
 
 BATCH_SIZE = 16
 MAX_LEN    = 256
@@ -156,7 +156,7 @@ def main():
     print(f"ASR test:    {len(asr_examples)} examples\n")
 
     results = []
-    output_dir = Path("/home/zarina/Work/RESEARCH/eval_results")
+    output_dir = Path("./eval_results")
     output_dir.mkdir(exist_ok=True)
 
     # Rule-based

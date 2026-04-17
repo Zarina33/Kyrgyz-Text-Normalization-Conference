@@ -6,8 +6,8 @@ import json
 import re
 from collections import Counter
 
-TRAIN_PATH = "/home/zarina/Work/RESEARCH/dataset/mixed_train.jsonl"
-TEST_PATH  = "/home/zarina/Work/RESEARCH/dataset/test_set_formal.jsonl"
+TRAIN_PATH = "./dataset/mixed_train.jsonl"
+TEST_PATH  = "./dataset/test_set_formal.jsonl"
 SAMPLE     = 50000  # analyze first 50k for speed
 
 
