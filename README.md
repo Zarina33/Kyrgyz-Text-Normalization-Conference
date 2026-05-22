@@ -45,6 +45,7 @@ ollama pull gemma4:e4b
 ├── independent_cer.json    # Cached results of the independent-reference evaluation
 ├── per_category_cer.py     # Per-category CER breakdown (punctuation / case / spelling / digit-word)
 ├── per_category_cer.json   # Cached per-category CER results
+├── reliability_metrics.py  # Inter-annotator reliability: Wilson CI, kappa, PABAK, Gwet's AC1
 ├── requirements.txt
 └── human_eval/
     └── eval_200_annotated.csv
@@ -137,6 +138,10 @@ python per_category_cer.py
 # Reference-bias probe (§5.4): CER against 50 independent human references
 python independent_reference.py   # build the independent reference set
 python independent_cer.py         # compute CER against it
+
+# Inter-annotator reliability (§5.3, Tables 4 and 6):
+# Wilson 95% CIs, Cohen's kappa, PABAK, Gwet's AC1
+python reliability_metrics.py
 ```
 
 ## Results
@@ -153,12 +158,30 @@ python independent_cer.py         # compute CER against it
 
 ### Human Evaluation (200 examples, 2 native annotators)
 
-| System | Human Score |
-|---|---|
-| Rule-Based | 0.500 |
-| Gemma 4 Zero-Shot | 0.793 |
-| mT5-small Pre-Train+FT | **0.998** |
-| mT5-small Fine-Tuned | **0.998** |
+Score = proportion of outputs rated correct (pooled over both annotators, n = 400 ratings per system). Wilson 95% confidence intervals are reported alongside the mean.
+
+| System | Score | 95% Wilson CI |
+|---|---|---|
+| Rule-Based | 0.500 | [0.451, 0.549] |
+| Gemma 4 Zero-Shot | 0.793 | [0.750, 0.829] |
+| mT5-small Pre-Train+FT | **0.998** | [0.986, 0.9996] |
+| mT5-small Fine-Tuned | **0.998** | [0.986, 0.9996] |
+
+### Inter-Annotator Reliability
+
+Cohen's kappa collapses to near zero under heavy prevalence skew (the first kappa paradox; Feinstein and Cicchetti, 1990). PABAK = 2·p_obs − 1 and Gwet's AC1 are reported alongside as they are robust under skew.
+
+| System | % agreement | Cohen's κ | PABAK | Gwet's AC1 |
+|---|---|---|---|---|
+| Rule-Based | 48.0% | 0.012 | −0.040 | −0.040 |
+| Gemma 4 Zero-Shot | 62.5% | −0.030 | 0.250 | 0.441 |
+| mT5-small Fine-Tuned | 99.5% | 0.000 | **0.990** | **0.995** |
+| mT5-small Pre-Train+FT | 99.5% | 0.000 | **0.990** | **0.995** |
+| Pooled (all systems) | 77.4% | 0.246 | 0.548 | 0.680 |
+
+PABAK and Gwet's AC1 confirm near-perfect agreement on the fine-tuned systems even where Cohen's κ is misleadingly low. Reproduce with `python reliability_metrics.py`.
+
+Of the 199 fine-tuned mT5 outputs that both annotators rated correct, **162 (81.4%) differ from the Gemini reference** at the character level, which explains the gap between Exact Match (18.6%) and human accuracy (99.8%).
 
 ## License
 
